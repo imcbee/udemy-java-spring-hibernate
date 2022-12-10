@@ -1,11 +1,14 @@
 package com.luv2code.springdemo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component //this will use the default bean id unless you specify ("thatSillyCoach")
 public class TennisCoach implements Coach {
 
+	@Autowired
+	@Qualifier("happyFortuneService")
 	private FortuneService fortuneService;
 	
 	
@@ -16,12 +19,14 @@ public class TennisCoach implements Coach {
 		System.out.println(">> inside default constructor");
 	}
 	
+	
+	
 	//define setter method (section 8) - needs to resolve the inject dependency
-	@Autowired
-	public void setFortuneService(FortuneService theFortuneService) {
-		System.out.println(">> inside the setFortuneService() method");
-		fortuneService = theFortuneService;
-	}
+//	@Autowired
+//	public void doSomeCrazyStuff(FortuneService theFortuneService) {
+//		System.out.println(">> inside the doSomeCrazyStuff() method");
+//		fortuneService = theFortuneService;
+//	}
 	
 	/*
 	@Autowired
