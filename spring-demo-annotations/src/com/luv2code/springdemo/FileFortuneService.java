@@ -6,6 +6,9 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Random;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,8 +22,14 @@ public class FileFortuneService implements FortuneService {
 	Random myRandom = new Random();
 	
 	//method to read from file
-	
 	public FileFortuneService() {
+		System.out.println("FileFortuneService:  inside of the constructor");
+	}
+	
+	@PostConstruct
+	public void loadFileFortuneService() {
+		System.out.println("FileFortuneServices:  inside of the method loadFileFortuneServices");
+		
 		// file reader
 		File theFile = new File(fileName);
 		//print out checks
@@ -45,6 +54,8 @@ public class FileFortuneService implements FortuneService {
 			e.printStackTrace();
 		}
 	}
+	
+	
 	
 	
 	@Override

@@ -24,6 +24,9 @@ public class AnontationBeanScopeDemoApp {
 		
 		System.out.println("\nMemory location for alphaCoach: " + alphaCoach + "\n");
 		
+		System.out.println(theCoach.getDailyWorkout());
+		System.out.println(theCoach.getDailyFortune());
+		
 		
 		//close
 		context.close();
