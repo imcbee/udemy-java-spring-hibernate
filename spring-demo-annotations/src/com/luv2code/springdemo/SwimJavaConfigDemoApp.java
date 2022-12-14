@@ -10,7 +10,7 @@ public class SwimJavaConfigDemoApp {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(SportConfig.class);
 		
 		// get the bean from spring container (section 10)
-		Coach theCoach = context.getBean("swimCoach", Coach.class);
+		SwimCoach theCoach = context.getBean("swimCoach", SwimCoach.class);
 			// section 7: tennisCoach use to be "thatSillyCoach"
 		
 		//call method from the bean (section 10)
@@ -18,6 +18,11 @@ public class SwimJavaConfigDemoApp {
 		
 		// call method for dailyFortune (section 10)
 		System.out.println(theCoach.getDailyFortune());
+		
+		//call new methods (section 10 - inject from properties file)
+		System.out.println(String.format("email: %s", theCoach.getEmail()));
+		System.out.println(String.format("team: %s", theCoach.getTeam()));
+		
 		
 		//close context (section 10)
 		context.close();
