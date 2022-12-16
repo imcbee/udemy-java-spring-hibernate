@@ -4,20 +4,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
+
 @Configuration
-//@ComponentScan("com.luv2code.springdemo")
-//@PropertySource("classpath:sport.properties")
-public class SportConfig {
+public class SportConfigPractice {
 
 	// define a bean for our sad fortune service (section 10)
 	@Bean
-	public FortuneService sadFortuneService() {
-		return new SadFortuneService();
+	public FortuneService relaxingFortune() {
+		return new RelaxingFortune();
 	}
 	
 	// define bean for our swimCoach and inject dependency (section 10) 
 	@Bean
-	public Coach swimCoach() {
-		return new SwimCoach(sadFortuneService());
+	public Coach vacationCoach() {
+		VacationCoach vacationCoach = new VacationCoach(relaxingFortune());
+		return vacationCoach;
 	}
 }

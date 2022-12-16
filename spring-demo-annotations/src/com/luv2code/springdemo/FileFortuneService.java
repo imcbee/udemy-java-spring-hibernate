@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-
 import org.springframework.stereotype.Component;
 
 @Component
