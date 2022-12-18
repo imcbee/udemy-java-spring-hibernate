@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
+<head>
+	<title>Main Menu - Hello World</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/my-test.css">
+	<script src="${pageContext.request.contextPath}/resources/js/simple.test.js"></script>
 
+</head>
 <body>
 
 
