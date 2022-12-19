@@ -6,7 +6,7 @@
 	<script src="${pageContext.request.contextPath}/resources/js/simple.test.js"></script>
 </head>
 <body>
-	<form action="processFormVersionTwo" method="GET">
+	<form action="processFormVersionThree" method="GET">
 		<input type="text" name="studentName" placeholder="What is your name?" />
 		
 		<input type="submit"/>
