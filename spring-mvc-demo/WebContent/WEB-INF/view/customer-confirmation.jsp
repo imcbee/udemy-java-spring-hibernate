@@ -13,6 +13,8 @@
 	
 	<br><br>
 	
+	Free Passes: ${customer.freePasses}
+	
 
 
 </body>

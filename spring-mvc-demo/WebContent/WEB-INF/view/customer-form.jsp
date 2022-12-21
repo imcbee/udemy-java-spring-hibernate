@@ -22,6 +22,9 @@
 		
 		<br><br>
 		
+		Free Passes: <form:input path="freePasses"/>
+		<form:errors path="freePasses" cssClass="error"/>
+		
 		<input type="submit" Value="Submit"/>
 	</form:form>
 </body>
