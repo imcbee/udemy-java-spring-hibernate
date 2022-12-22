@@ -41,6 +41,8 @@ public class CustomerController {
 		
 		System.out.println("Last Name: |" + theCustomer.getLastName() + " |d");
 		
+		System.out.println("theBindingResult: " + theBindingResult);
+		
 		if(theBindingResult.hasErrors()) {
 			return "customer-form";
 		}else {
