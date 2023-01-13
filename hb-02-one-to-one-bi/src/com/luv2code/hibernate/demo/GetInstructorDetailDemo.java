@@ -27,7 +27,8 @@ public class GetInstructorDetailDemo {
 			session.beginTransaction(); //this will save the details object because cascade all
 			
 			// get the instructor detail object
-			int getId = 2;
+			int getId = 2999;
+				//having a bad number will give a null
 			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, getId);
 			
 			// print the instructor detail object
@@ -41,7 +42,14 @@ public class GetInstructorDetailDemo {
 			
 			System.out.println("Done!!!");
 			
+		} catch(Exception exc) {
+			
+			exc.printStackTrace();
+			
 		} finally {
+			
+			// handle connection leak issue
+			session.close();
 			
 			factory.close();
 			
