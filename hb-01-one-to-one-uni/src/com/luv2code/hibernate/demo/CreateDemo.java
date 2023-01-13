@@ -25,10 +25,12 @@ public class CreateDemo {
 		try {
 			
 			// create the objects
-			Instructor tempInstructor = new Instructor("Ian", "McBee", "imcbee@luv2code.com")
+			Instructor tempInstructor = new Instructor("Ian", "McBee", "imcbee@luv2code.com");
+			
+			InstructorDetail tempInstructorDetail = new InstructorDetail("www.luv2code.com/youtube", "luv 2 code!");
 			
 			// associate the objects
-			
+			tempInstructor.setInstructorDetail(tempInstructorDetail);
 			
 			// start the transaction
 			session.beginTransaction();
