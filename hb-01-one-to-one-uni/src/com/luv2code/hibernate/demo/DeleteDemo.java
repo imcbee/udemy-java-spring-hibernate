@@ -6,9 +6,8 @@ import org.hibernate.cfg.Configuration;
 
 import com.luv2code.hibernate.demo.entity.Instructor;
 import com.luv2code.hibernate.demo.entity.InstructorDetail;
-import com.luv2code.hibernate.demo.entity.Student;
 
-public class CreateDemo {
+public class DeleteDemo {
 
 	public static void main(String[] args) {
 		
@@ -24,25 +23,24 @@ public class CreateDemo {
 		
 		try {
 			
-			// create the objects
-//			Instructor tempInstructor = new Instructor("Ian", "McBee", "imcbee@luv2code.com");
-//			
-//			InstructorDetail tempInstructorDetail = new InstructorDetail("www.luv2code.com/youtube", "luv 2 code!");
-			
-			Instructor tempInstructor = new Instructor("Chad", "Darby", "cdarby@luv2code.com");
-			
-			InstructorDetail tempInstructorDetail = new InstructorDetail("www.luv2code.com/youtube", "luv 2 code!");
-			
-			// associate the objects
-			tempInstructor.setInstructorDetail(tempInstructorDetail);
-			
 			// start the transaction
 			session.beginTransaction(); //this will save the details object because cascade all
 			
-			// save the instructor
-			System.out.println("Saving instructor: " + tempInstructor);
-			session.save(tempInstructor);
+			// get instructor by primary key id
+			int theId = 1;
+			Instructor tempInstructor = session.get(Instructor.class, theId);
 			
+			System.out.println("Found instructor: " + tempInstructor);
+			
+			// delete instructor
+			if(tempInstructor != null) {
+				
+				System.out.println("Deleting Instructor: " + tempInstructor);
+				
+				// this will also delete the details object because cascade all
+				session.delete(tempInstructor);
+				
+			}
 			
 			// commit transaction
 			session.getTransaction().commit();
