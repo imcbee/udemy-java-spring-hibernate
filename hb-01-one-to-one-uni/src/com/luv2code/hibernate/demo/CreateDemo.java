@@ -4,16 +4,19 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.luv2code.hibernate.demo.entity.Instructor;
+import com.luv2code.hibernate.demo.entity.InstructorDetail;
 import com.luv2code.hibernate.demo.entity.Student;
 
-public class CreateStudentDemo {
+public class CreateDemo {
 
 	public static void main(String[] args) {
 		
 		// create session factory
 		SessionFactory factory = new Configuration()
 				.configure("hibernate.cfg.xml")
-				.addAnnotatedClass(Student.class)
+				.addAnnotatedClass(Instructor.class)
+				.addAnnotatedClass(InstructorDetail.class)
 				.buildSessionFactory();
 		
 		// create session
@@ -21,19 +24,17 @@ public class CreateStudentDemo {
 		
 		try {
 			
-			// use session object to save java object
+			// create the objects
+			Instructor tempInstructor = new Instructor("Ian", "McBee", "imcbee@luv2code.com")
 			
-			// create a student object
-			System.out.println("Creating a new Student Object... ");
-			Student tempStudent = new Student("Paul", "Wall", "paul@luv2code.com");
+			// associate the objects
+			
 			
 			// start the transaction
 			session.beginTransaction();
 			
+			// save the instructor
 			
-			// save the student object
-			System.out.println("saving the student...");
-			session.save(tempStudent);
 			
 			// commit transaction
 			session.getTransaction().commit();
