@@ -27,7 +27,7 @@ public class DeleteInstructorDetailDemo {
 			session.beginTransaction(); //this will save the details object because cascade all
 			
 			// get the instructor detail object
-			int getId = 2;
+			int getId = 3;
 				//having a bad number will give a null
 			InstructorDetail tempInstructorDetail = session.get(InstructorDetail.class, getId);
 			
@@ -39,6 +39,12 @@ public class DeleteInstructorDetailDemo {
 			
 			// delete instructor detail
 			System.out.println("Deleting tempInstructorDetail: " + tempInstructorDetail);
+			
+			// remove the associated object reference
+			// break bi-directional reference
+			
+			tempInstructorDetail.getInstructor().setInstructorDetail(null);
+			
 			session.delete(tempInstructorDetail);
 			
 			// commit transaction
