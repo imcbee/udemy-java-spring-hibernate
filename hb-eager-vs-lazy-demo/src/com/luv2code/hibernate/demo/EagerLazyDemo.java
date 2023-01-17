@@ -37,7 +37,8 @@ public class EagerLazyDemo {
 			
 			System.out.println("luv2code: Instructor: " + tempInstructor);
 			
-			
+			// get courses for the instructor
+			System.out.println("luv2code: Courses: " + tempInstructor.getCourses());
 			
 			
 			// commit transaction
@@ -45,6 +46,8 @@ public class EagerLazyDemo {
 			
 			// close the session
 			session.close();
+			
+			System.out.println("luv2code:  This session is not closed\n\n");
 			
 			// since this is lazy loading, this should fail
 			
