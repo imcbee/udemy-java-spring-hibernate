@@ -1,6 +1,7 @@
 package com.luv2code.springdeom.mvc;
 
 
+import com.luv2code.springdeom.mvc.validation.CourseCode;
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,5 +27,8 @@ public class Customer {
 
   @Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "only 5 characters/digits")
   private String postalCode;
+
+  @CourseCode(value = "TOPS", message = "must start with TOPS") //? this already has the defaults
+  private String courseCode;
 
 }
