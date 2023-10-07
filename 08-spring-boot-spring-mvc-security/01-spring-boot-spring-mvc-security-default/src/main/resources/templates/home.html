@@ -19,7 +19,7 @@
                 Role(s): <span sec:authentication="principal.authorities"></span>
             </p>
         </div>
-        
+
         <div sec:authorize="hasRole('MANAGER')">
             <p>
                 <a th:href="@{/leaders}">Leadership Meeting</a>
