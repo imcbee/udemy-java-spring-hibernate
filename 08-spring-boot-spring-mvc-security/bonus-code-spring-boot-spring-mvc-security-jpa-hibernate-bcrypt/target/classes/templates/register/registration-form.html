@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Login Page</title>
+    <title>Register Page</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
@@ -20,7 +20,7 @@
         <div class="card border-info">
 
             <div class="card-header bg-info">
-                Sign In
+                Register Web User
             </div>
 
             <div class="card-body">
@@ -28,7 +28,7 @@
                 <div class="card-text">
 
                     <!-- Login Form -->
-                    <form action="#" th:action="@{/authenticateTheUser}"
+                    <form action="#" th:action="@{/register/processRegistrationForm}" th:object="${webUser}"
                           method="POST" class="form-horizontal">
 
                         <!-- Place for messages: error, alert etc ... -->
@@ -62,18 +62,14 @@
 
                         <!-- User name -->
                         <div style="margin-bottom: 25px" class="input-group">
-                            <input type="text" name="username" placeholder="username" class="form-control">
+                            <input type="text" th:field="*{userName}" placeholder="Username (*)" class="form-control">
                         </div>
 
-                        <!-- Password -->
-                        <div style="margin-bottom: 25px" class="input-group">
-                            <input type="password" name="password" placeholder="password" class="form-control">
-                        </div>
 
                         <!-- Login/Submit Button -->
                         <div style="margin-top: 10px" class="form-group">
                             <div class="col-sm-6 controls">
-                                <button type="submit" class="btn btn-success">Login</button>
+                                <button type="submit" class="btn btn-success">Register</button>
                             </div>
                         </div>
 
@@ -86,12 +82,6 @@
         </div>
     </div>
 
-<div>
-    <a th:href="@{/register/showRegistrationForm}"
-       class="btn btn-primary mt-3"
-       role="button"
-       aria-pressed="true">Register New User</a>
-</div>
 </div>
 
 </body>
