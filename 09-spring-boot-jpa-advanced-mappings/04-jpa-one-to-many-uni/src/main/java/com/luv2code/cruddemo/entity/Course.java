@@ -3,6 +3,9 @@ package com.luv2code.cruddemo.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="course")
 @AllArgsConstructor
@@ -25,11 +28,25 @@ public class Course {
   @JoinColumn(name = "instructor_id")
   private Instructor instructor;
 
+  @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+  @JoinColumn(name = "course_id")
+  private List<Review> reviews;
+
   // define constructor
 
 
   public Course(String title) {
     this.title = title;
+  }
+
+   // add convenience method
+
+  public void addReview(Review theReview) {
+    if (reviews == null) {
+      reviews = new ArrayList<>();
+    }
+
+    reviews.add(theReview);
   }
 
 }
