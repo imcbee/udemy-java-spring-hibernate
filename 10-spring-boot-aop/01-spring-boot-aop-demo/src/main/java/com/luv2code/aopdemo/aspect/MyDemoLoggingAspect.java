@@ -11,9 +11,30 @@ public class MyDemoLoggingAspect {
 
   // let's start with an @Before advice
 
-  @Before("execution(public void addAccount())")
+//  @Before("execution(public void addAccount())")
+//  //@Before("execution(public void updateAccount())")
+//  public void beforeAddAccountAdvice() {
+//
+//    System.out.println("\n=====>>> executing @Before advice on addAccount()");
+//    //System.out.println("\n=====>>> executing @Before advice on updateAccount()");
+//  }
+
+//!  @Before("execution(public void com.luv2code.aopdemo.dao.AccountDAO.addAccount())")
+//!  //@Before("execution(public void updateAccount())")
+//!  public void beforeAddAccountAdvice() {
+//!
+//!    System.out.println("\n=====>>> executing @Before advice on addAccount()");
+//!    //System.out.println("\n=====>>> executing @Before advice on updateAccount()");
+//!  }
+
+  //@Before("execution(public void add*())")
+  //@Before("execution(void add*())")
+  //@Before("execution(* add*(..))") // we need the fully qualified class name, .. for any params
+  @Before("execution(* com.luv2code.aopdemo.dao.*.*(..))") // this is for any class and any method
+  //@Before("execution(public void updateAccount())")
   public void beforeAddAccountAdvice() {
 
     System.out.println("\n=====>>> executing @Before advice on addAccount()");
+    //System.out.println("\n=====>>> executing @Before advice on updateAccount()");
   }
 }
