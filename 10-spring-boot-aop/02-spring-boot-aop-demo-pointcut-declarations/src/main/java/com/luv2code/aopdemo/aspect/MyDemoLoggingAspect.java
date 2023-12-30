@@ -1,12 +1,16 @@
 package com.luv2code.aopdemo.aspect;
 
+import com.luv2code.aopdemo.Account;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 @Aspect
 @Component
+@Order(2)
 public class MyDemoLoggingAspect {
   // this is where we add all of our related advices for logging
 
@@ -33,37 +37,34 @@ public class MyDemoLoggingAspect {
   //@Before("execution(* add*(..))") // we need the fully qualified class name, .. for any params
   //@Before("execution(public void updateAccount())")  // this wrong if no method is here
 
-  @Pointcut("execution(* com.luv2code.aopdemo.dao.*.*(..))")
-  private void forDaoPackage() {
 
-  }
 
-  // create a pointcut for getter methods
-  @Pointcut("execution(* com.luv2code.aopdemo.dao.*.get*(..))")
-  private void getter() {
-
-  }
-
-  // create a pointcut for setter methods
-  @Pointcut("execution(* com.luv2code.aopdemo.dao.*.set*(..))")
-  private void setter() {
-
-  }
-
-  // create pointcut: include package ... exclude getter/setter
-  @Pointcut("forDaoPackage() && !(getter() || setter())")
-  private void forDaoPackageNoGetterSetter() {
-
-  }
-
-  @Before("forDaoPackageNoGetterSetter()") // this is for any class and any method
-  public void beforeAddAccountAdvice() {
+  @Before("com.luv2code.aopdemo.aspect.LuvAopExpressions.forDaoPackageNoGetterSetter()") // this is for any class and any method
+  public void beforeAddAccountAdvice(JoinPoint theJoinPoint) {
     System.out.println("\n=====>>> executing @Before advice on addAccount()");
     //System.out.println("\n=====>>> executing @Before advice on updateAccount()");
+
+    // display the method signature
+    MethodSignature methodSig = (MethodSignature) theJoinPoint.getSignature();
+
+    // display method arguments
+    System.out.println("Method: " + methodSig);
+
+    // get args
+    Object[] args = theJoinPoint.getArgs();
+
+    // loop thru args
+    for (Object tempArg: args) {
+      System.out.println(tempArg);
+
+      if (tempArg instanceof Account) {
+        // downcast and print Account specific stuff
+        Account theAccount = (Account) tempArg;
+
+        System.out.println("account name: " + theAccount.getName());
+        System.out.println("account level: " + theAccount.getLevel());
+      }
+    }
   }
 
-  @Before("forDaoPackageNoGetterSetter()")
-  public void performApiAnalytics() {
-    System.out.println("\n=====>>> Performing API analytics");
-  }
 }
